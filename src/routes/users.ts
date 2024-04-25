@@ -11,7 +11,7 @@ const router = Router();
 
 router.route("/register-admin").post(createAdmin);
 router.route("/login").post(loginUser);
-router.route("/logout").get(logoutUser);
+router.route("/logout").get(authenticateUser, logoutUser);
 router.route("/showme").get(authenticateUser, showCurrentUser);
 
 export default router;

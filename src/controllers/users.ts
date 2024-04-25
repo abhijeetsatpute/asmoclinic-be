@@ -12,7 +12,14 @@ export const createAdmin = async (
   const { username, email, password } = req.body;
   try {
     const result = await userService.createAdmin({ username, email, password });
-    res.status(StatusCodes.CREATED).send(result);
+    res.status(StatusCodes.CREATED).send({
+      user: {
+        id: result.id,
+        username: result.username,
+        email: result.email,
+        createdAt: result.createdAt,
+      },
+    });
   } catch (error) {
     next(error);
   }
