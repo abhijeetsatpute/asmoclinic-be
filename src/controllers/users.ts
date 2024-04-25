@@ -1,7 +1,8 @@
-import { Request, Response } from "express";
+import { Request, Response } from "express-serve-static-core";
 import { CreateUser, UserLogin } from "../types/user";
 import { StatusCodes } from "http-status-codes";
 import * as userService from "../services/user";
+import { attachCookiesToResponse } from "../utils/jwt";
 
 export const createAdmin = async (
   req: Request<{}, {}, CreateUser>,
@@ -17,8 +18,24 @@ export const createAdmin = async (
   }
 };
 
-export const loginUser = (req: Request<{}, {}, UserLogin>, res: Response) => {
+export const loginUser = async (
+  req: Request<{}, {}, UserLogin>,
+  res: Response,
+  next: any
+) => {
   const { username, password } = req.body;
+  try {
+    const tokenUser = await userService.loginUser({ username, password });
+
+    attachCookiesToResponse({ res, user: tokenUser });
+    res.status(StatusCodes.OK).send(tokenUser);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const showCurrentUser = async (req: any, res: Response) => {
+  res.status(StatusCodes.OK).json({ user: req.user });
 };
 
 export const logoutUser = (req: Request, res: Response) => {

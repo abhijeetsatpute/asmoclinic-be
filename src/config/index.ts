@@ -13,6 +13,6 @@ export const {
   DB_USER,
   DB_NAME,
   TOKEN_EXPIRATION,
-  JWTKEY,
+  JWT_SECRET,
   REACT_APP_BASE_URL,
 } = process.env;
