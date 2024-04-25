@@ -9,9 +9,9 @@ export interface UserLogin {
   password: string;
 }
 
-export type tokenPayload {
+export interface tokenPayload {
   username: string | undefined;
   userId: string | undefined;
   userType: string | undefined;
-  iat: number| undefined;
+  iat: number | undefined;
 }

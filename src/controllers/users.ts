@@ -39,5 +39,9 @@ export const showCurrentUser = async (req: any, res: Response) => {
 };
 
 export const logoutUser = (req: Request, res: Response) => {
-  res.send("logoutUser");
+  res.cookie("accessToken", "logout", {
+    httpOnly: true,
+    expires: new Date(Date.now()),
+  });
+  res.status(StatusCodes.OK).json({ msg: "user logged out!" });
 };
