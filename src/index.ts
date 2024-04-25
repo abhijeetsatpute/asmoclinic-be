@@ -4,7 +4,15 @@ import { db } from "./database";
 
 const app = createApp();
 
-app.listen(PORT, async () => {
-  await db.sync({ alter: false });
-  console.log(`Running on Port ${PORT}`);
-});
+const start = async () => {
+  try {
+    await db.sync({ alter: false });
+    app.listen(PORT, async () => {
+      console.log(`Running on Port ${PORT}`);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+start();
