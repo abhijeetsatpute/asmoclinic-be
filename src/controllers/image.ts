@@ -20,19 +20,19 @@ export const addPhoto = async (req: any, res: Response, next: NextFunction) => {
     }
     const imagePath = path.join(
       __dirname,
-      "../../public/uploads/" + `${galleryImage.name}`
+      "../../public/uploads/gallery/" + `${galleryImage.name}`
     );
     await galleryImage.mv(imagePath);
 
     const createImageEntry = await imageService.addImage({
       name: galleryImage.name,
-      path: `/uploads/${galleryImage.name}`,
+      path: `/uploads/gallery/${galleryImage.name}`,
       uploadedBy: req.user.userId,
     });
 
     return res.status(StatusCodes.OK).json({
       msg: "image uploaded",
-      image: { path: `/uploads/${galleryImage.name}` },
+      image: { path: `/uploads/gallery/${galleryImage.name}` },
     });
   } catch (error) {
     next(error);

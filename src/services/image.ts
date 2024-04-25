@@ -18,7 +18,6 @@ export const deletePhoto = async (id: number) => {
   if (!image) {
     throw new BadRequestError("Image does not exist");
   }
-  console.log(path.join(__dirname, "../../public", image.path));
 
   fs.unlinkSync(path.join(__dirname, "../../public", image.path));
   const deleteImageEntry = await imageRepo.deleteImage(id);

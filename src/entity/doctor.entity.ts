@@ -7,7 +7,6 @@ import {
   Model,
   PrimaryKey,
   Table,
-  Unique,
 } from "sequelize-typescript";
 import { User } from "./user.entity";
 
@@ -15,9 +14,9 @@ import { User } from "./user.entity";
   paranoid: true,
   timestamps: true,
   freezeTableName: true,
-  tableName: "image",
+  tableName: "doctor",
 })
-export class Image extends Model<Image> {
+export class Doctor extends Model<Doctor> {
   @PrimaryKey
   @AutoIncrement
   @Column({ type: DataType.INTEGER })
@@ -27,20 +26,32 @@ export class Image extends Model<Image> {
     type: DataType.STRING,
     allowNull: false,
   })
-  name!: string;
+  fullname!: string;
 
   @Column({
     type: DataType.STRING,
     allowNull: false,
   })
-  path!: string;
+  occupation!: string;
+
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+  })
+  image!: string;
+
+  @Column({
+    type: DataType.JSON,
+    allowNull: false,
+  })
+  info!: object;
 
   @ForeignKey(() => User)
   @Column({
     type: DataType.INTEGER,
     allowNull: false,
   })
-  uploadedBy!: number;
+  createdBy!: number;
 
   @BelongsTo(() => User)
   user!: User;
