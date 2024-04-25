@@ -7,7 +7,11 @@
     "test": "jest",
     "build": "tsc --build",
     "start": "node ./dist",
-    "start:dev": "nodemon ./src/index.ts"
+    "start:dev": "nodemon ./src/index.ts",
+    "db:migrate": "npx sequelize-cli db:migrate",
+    "db:migrate:create": "npx sequelize-cli migration:generate --name",
+    "db:seed:create": "npx sequelize-cli seed:generate --name",
+    "db:seed": "npx sequelize-cli db:seed:all"
   },
   "repository": {
     "type": "git",
@@ -21,11 +25,24 @@
   },
   "homepage": "https://github.com/abhijeetsatpute/asmoclinic-be#readme",
   "dependencies": {
-    "express": "^4.19.2"
+    "bcrypt": "^5.1.1",
+    "express": "^4.19.2",
+    "pg": "^8.11.5",
+    "pg-hstore": "^2.3.4",
+    "reflect-metadata": "^0.2.2",
+    "sequelize": "^6.37.3",
+    "sequelize-typescript": "^2.1.6"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
     "@types/express": "^4.17.21",
+    "@types/node": "^20.12.7",
+    "@types/pg": "^8.11.5",
+    "@types/sequelize": "^4.28.20",
+    "@types/validator": "^13.11.9",
+    "dotenv": "^16.4.5",
     "nodemon": "^3.1.0",
+    "sequelize-cli": "^6.6.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
   }
