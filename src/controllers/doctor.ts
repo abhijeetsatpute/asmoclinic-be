@@ -15,3 +15,7 @@ export const getDocByID = (req: Request, res: Response) => {
 export const updateDocByID = (req: Request, res: Response) => {
   res.send("updateDocByID");
 };
+
+export const deleteDocByID = (req: Request, res: Response) => {
+  res.send("deleteDocByID");
+};
