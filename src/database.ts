@@ -4,6 +4,7 @@ import { User } from "./entity/user.entity";
 import { UserType } from "./entity/userType.entity";
 import { Image } from "./entity/image.entity";
 import { Doctor } from "./entity/doctor.entity";
+import { Result } from "./entity/result.entity";
 
 const port = DB_PORT ? parseInt(DB_PORT) : undefined;
 
@@ -14,7 +15,7 @@ export const db = new Sequelize({
   database: DB_NAME,
   username: DB_USER,
   password: DB_PASS,
-  models: [User, UserType, Image, Doctor],
+  models: [User, UserType, Image, Doctor, Result],
   //   logging: (sql: string) => logger.debug(sql),
   logging: false,
 });

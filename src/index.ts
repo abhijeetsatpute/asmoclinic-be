@@ -6,7 +6,7 @@ const app = createApp();
 
 const start = async () => {
   try {
-    await db.sync({ alter: false });
+    await db.sync();
     app.listen(PORT, async () => {
       console.log(`Running on Port ${PORT}`);
     });
