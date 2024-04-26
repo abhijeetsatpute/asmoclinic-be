@@ -2,6 +2,7 @@ import express from "express";
 import usersRouter from "./routes/users";
 import docRouter from "./routes/doctors";
 import galleryRouter from "./routes/image";
+import resultRouter from "./routes/result";
 import { errorHandlerMiddleware } from "./middleware/error-handler";
 import { notFoundMiddleware } from "./middleware/not-found";
 import cookieParser from "cookie-parser";
@@ -49,6 +50,7 @@ export function createApp() {
   app.use("/api/v1/users", usersRouter);
   app.use("/api/v1/doctors", docRouter);
   app.use("/api/v1/gallery", galleryRouter);
+  app.use("/api/v1/results", resultRouter);
 
   app.use(notFoundMiddleware);
   app.use(errorHandlerMiddleware);
